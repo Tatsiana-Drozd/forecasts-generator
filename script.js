@@ -13,3 +13,32 @@
 /* При генерации нового предсказания старое предсказание должно добавляться в начало списка «Мои предсказания» — .forecasts  */
 
 /* Для добавления предсказания в список воспользуйся шаблоном forecast-item */
+
+function getRandom(min, max) {
+    return (Math.floor(Math.random() * (max - min) + min));
+}
+
+
+const btn = document.querySelector('.forecast-btn');
+btn.addEventListener('click', function() {
+
+    let predictionNumber = getRandom(1, 6);
+    let predictionText = "";
+
+    if (predictionNumber == 1) {
+        predictionText = "Ваша цель достижима.";
+    } else if (predictionNumber == 2) {
+        predictionText = "Ориентируйся на маленькие победы - они повлекут за собой большие!";
+    } else if (predictionNumber == 3) {
+        predictionText = "Осторожно, впереди волна впечатлений!";
+    } else if (predictionNumber == 4) {
+        predictionText = "Улыбайся! Кто-то может влюбиться в твою улыбку!";
+    } else {
+        predictionText = "Не оставляйте усилий и получите желаемое!";
+    }
+});
+
+
+const current_forecast = document.querySelector('.current-forecast');
+let currentForecastH1 = current_forecast.querySelector('h1');
+currentForecastH1.textContent = predictionText;
