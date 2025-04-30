@@ -15,14 +15,16 @@
 /* Для добавления предсказания в список воспользуйся шаблоном forecast-item */
 
 function getRandom(min, max) {
-    return (Math.floor(Math.random() * (max - min) + min));
+    let rand = min + Math.random() * (max - min);
+    return Math.round(rand);
 }
+
 
 
 const btn = document.querySelector('.forecast-btn');
 btn.addEventListener('click', function() {
 
-    let predictionNumber = getRandom(1, 6);
+    let predictionNumber = getRandom(1, 5);
     let predictionText = "";
 
     if (predictionNumber == 1) {
@@ -36,9 +38,19 @@ btn.addEventListener('click', function() {
     } else {
         predictionText = "Не оставляйте усилий и получите желаемое!";
     }
+    const currentForecast = document.querySelector('.current-forecast');
+    let currentForecastH1 = currentForecast.querySelector('h1');
+    currentForecastH1.textContent = predictionText;
+
+    const currentForecastP = currentForecast.querySelector('p');
+    currentForecastP.textContent = getRandom(1, 100);
+
+    const template = document.querySelector('#forecast-item');
+    const myTemplate = template.content.cloneNode(true);
+
+    myTemplate.querySelector('h3').textContent = predictionText;
+    myTemplate.querySelector('p').textContent = currentForecastP;
+
+    const forecasts = document.querySelector('.forecasts');
+    forecasts.append(myTemplate);
 });
-
-
-const current_forecast = document.querySelector('.current-forecast');
-let currentForecastH1 = current_forecast.querySelector('h1');
-currentForecastH1.textContent = predictionText;
