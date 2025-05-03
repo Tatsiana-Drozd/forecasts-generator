@@ -45,7 +45,6 @@ btn.addEventListener('click', function() {
     }
 
     currentForecastH1.textContent = predictionText;
-
     currentForecastP.textContent = getRandom(1, 100);
 
     const myTemplate = template.content.cloneNode(true);
