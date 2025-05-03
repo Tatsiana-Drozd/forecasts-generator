@@ -14,14 +14,19 @@
 
 /* Для добавления предсказания в список воспользуйся шаблоном forecast-item */
 
+const btn = document.querySelector('.forecast-btn');
+const currentForecast = document.querySelector('.current-forecast');
+const currentForecastP = currentForecast.querySelector('p');
+const currentForecastH1 = currentForecast.querySelector('h1');
+const template = document.querySelector('#forecast-item');
+const forecasts = document.querySelector('.forecasts');
+
+
 function getRandom(min, max) {
-    let rand = min + Math.random() * (max - min);
-    return Math.round(rand);
+    return (Math.floor(Math.random() * (max - min) + min));
 }
 
 
-
-const btn = document.querySelector('.forecast-btn');
 btn.addEventListener('click', function() {
 
     let predictionNumber = getRandom(1, 5);
@@ -38,19 +43,14 @@ btn.addEventListener('click', function() {
     } else {
         predictionText = "Не оставляйте усилий и получите желаемое!";
     }
-    const currentForecast = document.querySelector('.current-forecast');
-    let currentForecastH1 = currentForecast.querySelector('h1');
+
     currentForecastH1.textContent = predictionText;
 
-    const currentForecastP = currentForecast.querySelector('p');
     currentForecastP.textContent = getRandom(1, 100);
 
-    const template = document.querySelector('#forecast-item');
     const myTemplate = template.content.cloneNode(true);
-
     myTemplate.querySelector('h3').textContent = predictionText;
-    myTemplate.querySelector('p').textContent = currentForecastP;
+    myTemplate.querySelector('p').textContent = getRandom(1, 100);
 
-    const forecasts = document.querySelector('.forecasts');
     forecasts.append(myTemplate);
 });
